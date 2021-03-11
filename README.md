@@ -4,28 +4,27 @@
 [![PyPI Version](https://img.shields.io/pypi/v/pelican-mau-reader)](https://pypi.org/project/pelican-mau-reader/)
 ![License](https://img.shields.io/pypi/l/pelican-mau-reader?color=blue)
 
-A reader that converts the [Mau](https://github.com/Project-Mau/mau) format into HTML.
+Mau Reader is a Pelican plugin that converts the [Mau](https://github.com/Project-Mau/mau) format into HTML.
 
 ## Requirements
 
-This plugin requires
+This plugin requires:
 
-* Python 3
-* Mau 1.3.0 or higher
-
-Mau can be installed with `pip install mau`.
+* Python 3.6+
+* Pelican 4.5+
+* Mau 1.3+
 
 ## Installation
 
-This plugin can be installed via:
+This plugin can be installed via the following command, which will also automatically install Mau itself:
 
     python -m pip install pelican-mau-reader
 
 ## Usage
 
-The plugin automatically manages all Pelican content files with the extension `.mau`.
+The plugin automatically manages all Pelican content files ending with the extension: `.mau`
 
-Metadata shall be expressed as Mau variables under the `pelican` namespace, e.g.
+Metadata shall be expressed as Mau variables under the `pelican` namespace. For example:
 
 ```
 :pelican.title:Test Mau file with content
@@ -36,13 +35,13 @@ Metadata shall be expressed as Mau variables under the `pelican` namespace, e.g.
 :pelican.summary:I have a lot to test
 ```
 
-The value of the metadata is a string as it it in the standard Markdown format. Please note that Mau variable values include all characters after the colon, spaces included.
+The value of a metadata field is a string, just as it is in the standard Markdown format. Please note that Mau variable values include all characters after the colon, spaces included.
 
 All values in the `config` dictionary are available as variables, so you can specify global values that are valid for all documents.
 
 ## Custom templates
 
-You can overwrite some or all Mau default HTML templates creating the `custom_templates` config variable. For example, should you wan to add a permanent link to all headers you can define
+You can override some or all Mau default HTML templates via the `custom_templates` configuration variable. For example, should you want to add a permanent link to all headers you can define:
 
 ``` python
 MAU = {
@@ -57,7 +56,7 @@ MAU = {
 }
 ```
 
-and if you want to limit that to only headers of level 1 and 2 you can use
+… and if you want to limit that to only headers of level 1 and 2 you can use:
 
 ``` python
 MAU = {
@@ -78,7 +77,7 @@ The TOC (Table of Contents) and footnotes are specific to each content file and 
 
 ## Custom header anchors
 
-Mau provides a simple function to compute IDs for headers, based on the content. The current function is
+Mau provides a simple function to compute IDs for headers, based on the content. The current function is:
 
 ``` python
 def header_anchor(text, level):
@@ -94,7 +93,7 @@ def header_anchor(text, level):
     return sanitised_text
 ```
 
-This provides deterministic header IDs that should suit the majority of cases. Should you need something different you can provide your own function specifying `mau.header_anchor_function` in the configuration
+This provides deterministic header IDs that should suit the majority of cases. Should you need something different, you can provide your own function specifying `mau.header_anchor_function` in the configuration:
 
 ``` python
 MAU = {
@@ -102,7 +101,7 @@ MAU = {
 }
 ```
 
-The example above returns the ID `XYZ` for all headers (not recommended as it is not unique). The arguments `text` and `level` are respectively the text of the header itself and an integer representing the level of depth (e.g. `1` for `h1` headers, `2` for `h2` headers, and so on).
+The example above returns the ID `XYZ` for all headers (not recommended as it is not unique). The arguments `text` and `level` are respectively the text of the header itself and an integer representing the level of depth (e.g., `1` for `h1` headers, `2` for `h2` headers, and so on).
 
 ## Contributing
 
