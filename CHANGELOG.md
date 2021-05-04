@@ -5,4 +5,3 @@ CHANGELOG
 ------------------
 
 Initial release
-
