@@ -28,7 +28,6 @@ class MauReader(BaseReader):
 
     def read(self, source_path):
         config = self.settings.get("MAU", {})
-        config["no_document"] = True
 
         output_format = config.get("output_format", "html")
         custom_templates = config.get("custom_templates", {})
