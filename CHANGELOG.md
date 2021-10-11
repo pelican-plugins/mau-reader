@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+1.0.2 - 2021-10-11
+------------------
+
+Update the dependencies so that Mau 2.x is not installed, as that will introduce API changes.
+
+Contributed by [Leonardo Giordani](https://github.com/lgiordani) [PR #12](https://github.com/pelican-plugins/mau-reader/pull/12/)
+
+
 1.0.1 - 2021-07-30
 ------------------
 

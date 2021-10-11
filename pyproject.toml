@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pelican-mau-reader"
-version = "1.0.1"
+version = "1.0.2"
 description = "Pelican plugin that converts Mau-formatted content into HTML"
 authors = ["Leonardo Giordani <giordani.leonardo@gmail.com>"]
 license = "MIT"
