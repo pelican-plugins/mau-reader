@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pelican-mau-reader"
-version = "1.0.2"
+version = "2.0.0"
 description = "Pelican plugin that converts Mau-formatted content into HTML"
 authors = ["Leonardo Giordani <giordani.leonardo@gmail.com>"]
 license = "MIT"
@@ -31,7 +31,7 @@ classifiers = [
 python = ">=3.6.2,<4.0"
 pelican = ">=4.5"
 markdown = {version = ">=3.2", optional = true}
-mau = ">=1.4.0,<2.0"
+mau = ">=2.0.0"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^21.4b2", allow-prereleases = true}
