@@ -12,7 +12,7 @@ This plugin requires:
 
 * Python 3.6+
 * Pelican 4.5+
-* Mau 1.3+
+* Mau 2.0+
 
 ## Installation
 
