@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+2.0.0 - 2021-10-20
+------------------
+
+Update the reader to the Mau 2.0.0 interface.
+
+Contributed by [Leonardo Giordani](https://github.com/lgiordani) [PR #14](https://github.com/pelican-plugins/mau-reader/pull/14/)
+
+
 1.0.2 - 2021-10-11
 ------------------
 
