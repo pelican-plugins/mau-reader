@@ -12,7 +12,6 @@ from pelican.utils import pelican_open
 
 try:
     from mau import Mau
-    from mau.visitors.html_visitor import DEFAULT_TEMPLATES as mau_default_templates
 
     mau_enabled = True
 except ImportError:
@@ -31,10 +30,9 @@ class MauReader(BaseReader):
 
         output_format = config.get("output_format", "html")
         custom_templates = config.get("custom_templates", {})
-        mau_default_templates.update(custom_templates)
 
         self._source_path = source_path
-        self._mau = Mau(config, output_format, default_templates=mau_default_templates)
+        self._mau = Mau(config, output_format, custom_templates=custom_templates)
         with pelican_open(source_path) as text:
             content = self._mau.process(text)
 
