@@ -1,6 +1,6 @@
 # Mau Reader: A Plugin for Pelican
 
-[![Build Status](https://img.shields.io/github/workflow/status/pelican-plugins/mau-reader/build)](https://github.com/pelican-plugins/mau-reader/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/pelican-plugins/mau-reader/main.yml?branch=main)](https://github.com/pelican-plugins/mau-reader/actions)
 [![PyPI Version](https://img.shields.io/pypi/v/pelican-mau-reader)](https://pypi.org/project/pelican-mau-reader/)
 ![License](https://img.shields.io/pypi/l/pelican-mau-reader?color=blue)
 
