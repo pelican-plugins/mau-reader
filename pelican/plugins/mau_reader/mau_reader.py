@@ -1,9 +1,6 @@
-"""
-Mau Reader
-==========
+"""Mau Reader plugin.
 
-This plugin allows you to use Mau to write your posts.
-File extension should be ``.mau``
+This plugin allows you to use Mau to write your posts. File extension should be `.mau`.
 """
 
 from pelican import signals
@@ -15,12 +12,14 @@ try:
 
     mau_enabled = True
 except ImportError:
-    mau_enabled = False  # NOQA
+    mau_enabled = False
 
 
 class MauReader(BaseReader):
+    """Mau Reader class method."""
+
     enabled = mau_enabled
-    file_extensions = ["mau"]
+    file_extensions = "mau"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -41,7 +40,7 @@ class MauReader(BaseReader):
         return content, metadata
 
     def _parse_metadata(self, meta):
-        """Return the dict containing document metadata"""
+        """Return the dict containing document metadata."""
         formatted_fields = self.settings["FORMATTED_FIELDS"]
 
         output = {}
@@ -61,9 +60,11 @@ class MauReader(BaseReader):
 
 
 def add_reader(readers):
+    """Register Mau reader."""
     for ext in MauReader.file_extensions:
         readers.reader_classes[ext] = MauReader
 
 
 def register():
+    """Register Mau Reader plugin."""
     signals.readers_init.connect(add_reader)
