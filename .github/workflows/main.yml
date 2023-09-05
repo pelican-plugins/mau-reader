@@ -23,6 +23,11 @@ jobs:
           cache: true
           cache-dependency-path: ./pyproject.toml
 
+      - name: Create & activate a virtual environment
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+
       - name: Install dependencies
         run: pdm install
 
