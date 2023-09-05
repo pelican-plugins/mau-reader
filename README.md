@@ -2,6 +2,7 @@
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/pelican-plugins/mau-reader/main.yml?branch=main)](https://github.com/pelican-plugins/mau-reader/actions)
 [![PyPI Version](https://img.shields.io/pypi/v/pelican-mau-reader)](https://pypi.org/project/pelican-mau-reader/)
+[![Downloads](https://img.shields.io/pypi/dm/pelican-mau-reader)](https://pypi.org/project/pelican-mau-reader/)
 ![License](https://img.shields.io/pypi/l/pelican-mau-reader?color=blue)
 
 Mau Reader is a Pelican plugin that converts the [Mau](https://github.com/Project-Mau/mau) format into HTML.
@@ -10,7 +11,7 @@ Mau Reader is a Pelican plugin that converts the [Mau](https://github.com/Projec
 
 This plugin requires:
 
-* Python 3.6+
+* Python 3.8+
 * Pelican 4.5+
 * Mau 2.0+
 
@@ -19,6 +20,8 @@ This plugin requires:
 This plugin can be installed via the following command, which will also automatically install Mau itself:
 
     python -m pip install pelican-mau-reader
+
+As long as you have not explicitly added a `PLUGINS` setting to your Pelican settings file, then the newly-installed plugin should be automatically detected and enabled. Otherwise, you must add `mau_reader` to your existing `PLUGINS` list. For more information, please see the [How to Use Plugins](https://docs.getpelican.com/en/latest/plugins.html#how-to-use-plugins) documentation.
 
 ## Usage
 
