@@ -1,7 +1,6 @@
 import os
 
 from mau_reader import MauReader
-
 from pelican.tests.support import get_settings
 
 DIR_PATH = os.path.dirname(__file__)
