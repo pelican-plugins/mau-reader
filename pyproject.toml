@@ -26,6 +26,7 @@ requires-python = ">=3.8.1,<4.0"
 dependencies = [
     "pelican>=4.5",
     "mau>=3.0.0,<4.0.0",
+    "mau-html-visitor>=1.0.0"
 ]
 
 [project.urls]
