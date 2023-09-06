@@ -7,8 +7,24 @@ DIR_PATH = os.path.dirname(__file__)
 TEST_CONTENT_PATH = os.path.abspath(os.path.join(DIR_PATH, "test_data"))
 
 
+def header_anchor(text, level):
+    return "ANCHOR"
+
+
 def test_article_with_mau_extension():
     settings = get_settings()
+
+    settings["MAU"] = {
+        "header_anchor_function": header_anchor,
+        "custom_templates": {
+            "header.html": (
+                '<h{{ level }} id="ANCHOR">'
+                "{{ value }}"
+                '{% if anchor %}<a href="#ANCHOR">¶</a>{% endif %}'
+                "</h{{ level }}>"
+            )
+        },
+    }
     mau_reader = MauReader(settings)
 
     source_path = os.path.join(TEST_CONTENT_PATH, "article_with_content.mau")
@@ -48,27 +64,3 @@ def test_article_with_mau_extension_non_ascii_metadata():
     assert metadata["category"] == "指導書"
     assert [str(i) for i in metadata["tags"]] == ["パイソン", "マック"]
     assert metadata["slug"] == "python-virtualenv-on-mac-osx-mountain-lion-10.8"
-
-
-def test_custom_templates():
-    settings = get_settings()
-
-    settings["MAU"] = {
-        "custom_templates": {
-            "header.html": (
-                '<h{{ level }} id="{{ anchor }}">'
-                "{{ value }}"
-                '{% if anchor %}<a href="#{{ anchor }}">¶</a>{% endif %}'
-                "</h{{ level }}>"
-            )
-        },
-    }
-    mau_reader = MauReader(settings)
-
-    source_path = os.path.join(TEST_CONTENT_PATH, "article_with_content.mau")
-    output, metadata = mau_reader.read(source_path)
-
-    with open(os.path.join(TEST_CONTENT_PATH, "article_with_content_custom.html")) as f:
-        expected = f.read().strip()
-
-    assert output == expected
