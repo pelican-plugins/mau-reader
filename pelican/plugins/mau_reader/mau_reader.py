@@ -4,7 +4,7 @@ This plugin allows you to use Mau to write your posts. File extension should be 
 
 """
 
-from typing import ClassVar
+from typing import ClassVar, List
 
 from pelican import signals
 from pelican.readers import BaseReader
@@ -37,7 +37,7 @@ class MauReader(BaseReader):
     """Mau Reader class method."""
 
     enabled = mau_enabled
-    file_extensions: ClassVar[list[str]] = ["mau"]
+    file_extensions: ClassVar[List[str]] = ["mau"]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
