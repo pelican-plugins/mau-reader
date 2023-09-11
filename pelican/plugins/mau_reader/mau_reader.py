@@ -35,7 +35,7 @@ class MauReader(BaseReader):
     """Mau Reader class method."""
 
     enabled = mau_enabled
-    file_extensions = "mau"
+    file_extensions = ("mau",)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
