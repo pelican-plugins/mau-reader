@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+3.0.1 - 2023-09-11
+------------------
+
+Fix incorrect management of file extensions
+
+Contributed by [Leonardo Giordani](https://github.com/lgiordani) via [PR #30](https://github.com/pelican-plugins/mau-reader/pull/30/)
+
+
 3.0.0 - 2023-09-06
 ------------------
 
