@@ -93,8 +93,6 @@ ignore = [
   "PLW2901", # `for` loop variable overwritten by assignment target
 ]
 
-target-version = "py38"
-
 [tool.ruff.per-file-ignores]
 "**/test_mau_reader.py" = ["D103", "E501"]
 
