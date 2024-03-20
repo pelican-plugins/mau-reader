@@ -11,6 +11,7 @@ from pelican.utils import pelican_open
 try:
     from mau import Mau, load_visitors
     from mau.environment.environment import Environment
+    from mau.errors import MauErrorException, print_error
 
     visitor_classes = load_visitors()
     mau_enabled = True
@@ -30,6 +31,13 @@ class OutputFormatNotSupported(Exception):
             f"Output format {output_format} is not supported by Mau. "
             "You might have to install a plugin."
         )
+
+
+class ErrorInSourceFile(Exception):
+    """Exception to signal an error parsing the source file."""
+
+    def __init__(self, filename):
+        super().__init__(f"The file {filename} cannot be parsed")
 
 
 class MauReader(BaseReader):
@@ -63,23 +71,32 @@ class MauReader(BaseReader):
             self.environment,
         )
 
-        with pelican_open(source_path) as text:
-            mau.run_lexer(text)
+        try:
+            with pelican_open(source_path) as text:
+                mau.run_lexer(text)
 
-        mau.run_parser(mau.lexer.tokens)
-        content = mau.run_visitor(mau.parser.output["content"])
+            mau.run_parser(mau.lexer.tokens)
+            content = mau.run_visitor(mau.parser.output["content"])
 
-        if visitor_class.transform:
-            content = visitor_class.transform(content)
+            if visitor_class.transform:
+                content = visitor_class.transform(content)
 
-        metadata = self._parse_metadata(
-            self.environment.getnamespace("pelican").asdict()
-        )
+            metadata = self._parse_metadata()
 
-        return content, metadata
+            metadata["mau"] = {
+                "custom_filters": mau.parser.output["custom_filters"],
+            }
+        except MauErrorException as exception:
+            print_error(exception.error)
 
-    def _parse_metadata(self, meta):
+            raise ErrorInSourceFile(source_path) from exception
+        else:
+            return content, metadata
+
+    def _parse_metadata(self):
         """Return the dict containing document metadata."""
+        meta = self.environment.getvar("pelican").asdict()
+
         formatted_fields = self.settings["FORMATTED_FIELDS"]
 
         mau = Mau(
