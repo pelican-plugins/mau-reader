@@ -52,6 +52,8 @@ test = [
     "pytest>=7.0",
     "pytest-cov>=4.0",
     "pytest-sugar>=0.9.7",
+    "mau>=4.0.0,<5.0.0",
+    "mau-html-visitor>=2.0.0"
 ]
 
 [tool.pdm.build]
