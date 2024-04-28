@@ -15,16 +15,23 @@ def test_article_with_mau_extension():
     settings = get_settings()
 
     settings["MAU"] = {
-        "header_anchor_function": header_anchor,
-        "custom_templates": {
-            "header.html": (
-                '<h{{ level }} id="ANCHOR">'
-                "{{ value }}"
-                '{% if anchor %}<a href="#ANCHOR">¶</a>{% endif %}'
-                "</h{{ level }}>"
-            )
+        "mau": {
+            "parser": {
+                "header_anchor_function": header_anchor,
+            },
+            "visitor": {
+                "custom_templates": {
+                    "header.html": (
+                        '<h{{ level }} id="ANCHOR">'
+                        "{{ value }}"
+                        '{% if anchor %}<a href="#ANCHOR">¶</a>{% endif %}'
+                        "</h{{ level }}>"
+                    )
+                }
+            },
         },
     }
+
     mau_reader = MauReader(settings)
 
     source_path = os.path.join(TEST_CONTENT_PATH, "article_with_content.mau")
