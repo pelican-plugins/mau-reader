@@ -60,9 +60,10 @@ class MauReader(BaseReader):
 
         visitor_class = visitors[output_format]
         self.environment.setvar("mau.visitor.class", visitor_class)
+        self.environment.setvar("mau.visitor.format", output_format)
 
         # Import Mau settings from Pelican settings
-        self.environment.update(self.settings.get("MAU", {}), "mau")
+        self.environment.update(self.settings.get("MAU", {}))
 
         self._source_path = source_path
 
@@ -75,23 +76,36 @@ class MauReader(BaseReader):
             with pelican_open(source_path) as text:
                 mau.run_lexer(text)
 
+            # Run the Mau parser
             mau.run_parser(mau.lexer.tokens)
-            content = mau.run_visitor(mau.parser.output["content"])
 
+            # These are the templates prefixes
+            prefixes = [
+                self.environment.getvar("pelican.series"),
+                self.environment.getvar("pelican.template"),
+            ]
+            prefixes = [i for i in prefixes if i is not None]
+            self.environment.setvar("mau.visitor.prefixes", prefixes)
+
+            # Run the visitor on the main content
+            content = mau.run_visitor(mau.parser.output["content"])
             if visitor_class.transform:
                 content = visitor_class.transform(content)
 
             metadata = self._parse_metadata()
 
-            metadata["mau"] = {
-                "custom_filters": mau.parser.output["custom_filters"],
-            }
+            prefixes = [f"{i}.page" for i in prefixes] + ["page"]
+            self.environment.setvar("mau.visitor.prefixes", prefixes)
+
+            metadata["mau"] = {}
+            metadata["mau"]["toc"] = mau.run_visitor(mau.parser.output["toc"])
+
         except MauErrorException as exception:
             print_error(exception.error)
 
             raise ErrorInSourceFile(source_path) from exception
-        else:
-            return content, metadata
+
+        return content, metadata
 
     def _parse_metadata(self):
         """Return the dict containing document metadata."""
