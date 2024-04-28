@@ -27,8 +27,8 @@ classifiers = [
 requires-python = ">=3.8.1,<4.0"
 dependencies = [
     "pelican>=4.5",
-    "mau>=3.0.0,<4.0.0",
-    "mau-html-visitor>=1.0.0"
+    "mau>=4.0.0,<5.0.0",
+    "mau-html-visitor>=2.0.0"
 ]
 
 [project.urls]
@@ -52,6 +52,8 @@ test = [
     "pytest>=7.0",
     "pytest-cov>=4.0",
     "pytest-sugar>=0.9.7",
+    "mau>=4.0.0,<5.0.0",
+    "mau-html-visitor>=2.0.0"
 ]
 
 [tool.pdm.build]
