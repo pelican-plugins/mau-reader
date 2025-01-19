@@ -1,6 +1,6 @@
 [project]
 name = "pelican-mau-reader"
-version = "4.0.0"
+version = "4.0.1"
 description = "Pelican plugin that converts Mau-formatted content into HTML"
 authors = [{name = "Leonardo Giordani", email = "giordani.leonardo@gmail.com"}, {name = "Justin Mayer", email = "entroP@gmail.com"}]
 license = {text = "MIT"}

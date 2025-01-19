@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+4.0.1 - 2025-01-19
+------------------
+
+Fix the way the configuration dictionary is loaded. Now the configuration key `MAU` (a dictionary) is loaded under the namespace `mau`.
+
+Contributed by [Leonardo Giordani](https://github.com/lgiordani) via [PR #33](https://github.com/pelican-plugins/mau-reader/pull/33/)
+
+
 4.0.0 - 2024-04-28
 ------------------
 
