@@ -50,8 +50,10 @@ class MauReader(BaseReader):
         super().__init__(*args, **kwargs)
 
     def read(self, source_path):
-        self.environment = Environment()
+        # Import Mau settings from Pelican settings
         config = self.settings.get("MAU", {})
+        self.environment = Environment()
+        self.environment.update(config, "mau")
 
         output_format = config.get("output_format", "html")
 
@@ -61,9 +63,6 @@ class MauReader(BaseReader):
         visitor_class = visitors[output_format]
         self.environment.setvar("mau.visitor.class", visitor_class)
         self.environment.setvar("mau.visitor.format", output_format)
-
-        # Import Mau settings from Pelican settings
-        self.environment.update(self.settings.get("MAU", {}))
 
         self._source_path = source_path
 
