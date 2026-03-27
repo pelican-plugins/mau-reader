@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+5.0.0 - 2026-03-27
+------------------
+
+Update the reader to the Mau 5.0.0 interface. Requires Python 3.10+.
+
 4.0.1 - 2025-01-19
 ------------------
 

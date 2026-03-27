@@ -11,9 +11,9 @@ Mau Reader is a Pelican plugin that converts the [Mau](https://github.com/Projec
 
 This plugin requires:
 
-* Python 3.8+
+* Python 3.10+
 * Pelican 4.5+
-* Mau 2.0+
+* Mau 5.0+
 
 ## Installation
 
