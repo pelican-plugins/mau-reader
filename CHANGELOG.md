@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+5.0.0 - 2026-03-31
+------------------
+
+Update the reader to the Mau 5.0.0 interface. Requires Python 3.10+.
+
+Contributed by [Leonardo Giordani](https://github.com/lgiordani) via [PR #34](https://github.com/pelican-plugins/mau-reader/pull/34/)
+
+
 4.0.1 - 2025-01-19
 ------------------
 
